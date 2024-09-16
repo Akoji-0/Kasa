@@ -1,0 +1,362 @@
+@charset "UTF-8";
+body {
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+  font-family: "Roboto", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 5rem;
+}
+.Header img {
+  height: 100px;
+}
+@media (max-width: 768px) {
+  .Header img {
+    height: 60px;
+  }
+}
+@media (max-width: 480px) {
+  .Header {
+    flex-wrap: nowrap; /* Empêche les éléments de passer à la ligne */
+    justify-content: space-between;
+    padding: 0 1rem;
+  }
+  .Header img {
+    height: 50px; /* Ajustement de la taille du logo pour mobile */
+  }
+}
+
+.navHeader {
+  display: flex;
+  gap: 80px;
+  font-size: 23px;
+}
+@media (max-width: 768px) {
+  .navHeader {
+    gap: 50px;
+    font-size: 18px;
+  }
+}
+@media (max-width: 480px) {
+  .navHeader {
+    gap: 35px;
+    font-size: 16px; /* Réduction de la taille des textes pour téléphone */
+  }
+}
+
+.navHeader a {
+  text-decoration: none;
+  color: black;
+}
+
+.navHeader a.active {
+  text-decoration: underline;
+}
+
+.Footer {
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  padding: 35px;
+  gap: 30px;
+  font-size: 20px;
+}
+.Footer img {
+  height: 100px;
+}
+@media (max-width: 768px) {
+  .Footer {
+    font-size: 16px;
+    padding: 20px;
+  }
+  .Footer img {
+    height: 60px;
+  }
+}
+
+.HeaderSection {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  text-align: center;
+}
+.HeaderSection img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 200px;
+  max-height: 500px;
+  border-radius: 25px;
+  filter: brightness(0.5);
+  width: 86%;
+}
+.HeaderSection p {
+  position: absolute;
+  top: 28%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 1px 1px 0px black, -1px 1px 0px black, 1px -1px 0px black, -1px -1px 0px black;
+  width: 63%;
+}
+@media (max-width: 768px) {
+  .HeaderSection img {
+    border-radius: 15px;
+    height: 150px;
+  }
+  .HeaderSection p {
+    font-size: 2rem;
+    top: 22%;
+    text-shadow: none;
+  }
+}
+@media (max-width: 480px) {
+  .HeaderSection p {
+    font-size: 1.5rem;
+  }
+  .HeaderSection img {
+    border-radius: 15px;
+    height: 125px;
+  }
+}
+
+.About {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.About-dropdown {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  margin: 40px auto;
+}
+@media (max-width: 768px) {
+  .About-dropdown {
+    width: 70%;
+    gap: 13px;
+  }
+}
+@media (max-width: 480px) {
+  .About-dropdown {
+    width: 85%;
+    gap: 12px;
+  }
+}
+
+.About-dropdown .dropdown-content {
+  opacity: 0;
+  visibility: hidden;
+  height: 0;
+  overflow: hidden;
+  transition: opacity 0.7s ease, height 0.7s ease;
+}
+
+.About-dropdown .dropdown-content.open {
+  opacity: 1;
+  visibility: visible;
+  height: auto; /* L'élément s'ouvre automatiquement à la hauteur de son contenu */
+}
+
+.dropdown-item {
+  margin-bottom: 10px;
+  border-radius: 14px;
+}
+
+.dropdown-header {
+  background-color: #ff6b6b;
+  color: white;
+  padding: 15px;
+  font-size: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+  position: relative;
+  font-weight: bold;
+  height: 13px;
+}
+@media (max-width: 768px) {
+  .dropdown-header {
+    height: 10px;
+  }
+}
+.dropdown-header::after {
+  content: "";
+  border: solid white;
+  border-width: 3px 0 0 3px;
+  display: inline-block;
+  padding: 5px;
+  transform: rotate(45deg);
+  transition: transform 0.3s ease;
+  position: absolute;
+  right: 20px;
+}
+
+.dropdown-header.open::after {
+  transform: rotate(-135deg);
+}
+
+.dropdown-content {
+  padding: 12px 14px 10px 20px;
+  font-size: 16px;
+  text-align: left;
+}
+
+.LogementsSection {
+  padding: 20px;
+}
+.LogementsSection .grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(411px, 0fr));
+  gap: 40px;
+  padding: 50px;
+  justify-content: center;
+}
+.LogementsSection .grid-item {
+  background: linear-gradient(0deg, rgb(0, 0, 0) -90%, rgb(255, 75, 75) 40%);
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 300px;
+}
+.LogementsSection .grid-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+.LogementsSection .grid-item .logement-image {
+  width: 100%;
+  height: 140px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  height: 73%;
+}
+.LogementsSection .grid-item p {
+  color: #fff;
+  font-size: 18px;
+  width: 67%;
+  text-align: start;
+}
+.LogementsSection .appartement-details {
+  margin-top: 30px;
+  text-align: left;
+}
+.LogementsSection .appartement-details h2 {
+  font-size: 28px;
+  color: #333;
+}
+.LogementsSection .appartement-details p {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.LogementsSection .appartement-details h3 {
+  margin-top: 20px;
+  font-size: 22px;
+  color: #ff4b4b;
+}
+.LogementsSection .appartement-details ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+.LogementsSection .appartement-details .pictures {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+.LogementsSection .appartement-details .pictures .appartement-picture {
+  width: 150px;
+  height: 150px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 10px;
+}
+
+.carousel {
+  position: relative;
+  width: 80%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.carousel .carousel-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.carousel .carousel-wrapper .carousel-image {
+  width: 100%;
+  height: 450px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 10px;
+}
+.carousel .carousel-wrapper .carousel-navigation {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+}
+.carousel .carousel-wrapper .carousel-navigation .carousel-arrow {
+  background: none;
+  border: none;
+  font-size: 6rem;
+  color: #fff;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 1;
+  transition: color 0.2s;
+}
+.carousel .carousel-wrapper .carousel-navigation .carousel-arrow:hover {
+  color: #ff4b4b;
+}
+.carousel .carousel-wrapper .carousel-navigation .left {
+  margin-left: 10px;
+}
+.carousel .carousel-wrapper .carousel-navigation .right {
+  margin-right: 10px;
+}
+.carousel .carousel-wrapper .carousel-counter {
+  position: absolute;
+  bottom: 10px;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 1.5rem;
+}
+
+.appartement-details {
+  margin-inline: 12rem;
+  color: #ff6b6b;
+}
+.appartement-details h2 {
+  font-size: 40px;
+  font-weight: 300;
+}
+.appartement-details .location {
+  font-size: 20px;
+  color: black;
+}/*# sourceMappingURL=style.css.map */
