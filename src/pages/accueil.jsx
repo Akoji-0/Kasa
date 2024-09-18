@@ -38,17 +38,21 @@ export default function Accueil() {
           <div className="grid-container">
             {logements.map((logement) => (
               <div
-                key={logement.id}
-                className="grid-item"
-                onClick={() => handleAppartementClick(logement.id)}
-              >
-                <img
-                  src={logement.cover}
-                  alt={logement.title}
-                  className="logement-image"
-                />
-                <p>{logement.title}</p>
-              </div>
+              key={logement.id}
+              className="grid-item"
+              onClick={() => handleAppartementClick(logement.id)}
+              style={{
+                backgroundImage: `linear-gradient(
+                    180deg,
+                    rgba(0, 0, 0, 0.2) 20%,
+                    rgba(0, 0, 0, 0.6) 70%
+                  ), url(${logement.cover})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            >
+              <p>{logement.title}</p>
+            </div>
             ))}
           </div>
         )}

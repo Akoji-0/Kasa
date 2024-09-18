@@ -31,21 +31,33 @@ export default function AppartementDetails() {
   }
 
   return (
-    <div>
-      {/* Ajout du carrousel d'images */}
+    <div className="body">
       <Carousel pictures={appartement.pictures} />
 
       <div className="appartement-details">
-        <h2>{appartement.title}</h2>
-        <p className="location">{appartement.location}</p>
-        <p>Évaluation : {appartement.rating}/5</p>
-        <p>{appartement.description}</p>
-        <h3>Équipements :</h3>
-        <ul>
-          {appartement.equipments.map((equip, index) => (
-            <li key={index}>{equip}</li>
-          ))}
-        </ul>
+        <div className="appartement-details-left">
+          <h2>{appartement.title}</h2>
+          <p className="location">{appartement.location}</p>
+          <div>
+            {appartement.tags.map((tag, index) => (
+              <span key={index} className="tag">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className="appartement-details-right">
+          <div className="host">
+          <p>{appartement.host.name}</p>
+            <img
+              src={appartement.host.picture}
+              alt={appartement.host.name}
+              className="host-picture"
+            />
+          </div>
+          <p>Évaluation : {appartement.rating}/5</p>
+        </div>
       </div>
     </div>
   );
