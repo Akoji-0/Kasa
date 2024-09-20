@@ -1,5 +1,12 @@
 @charset "UTF-8";
-body {
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
   padding: 0;
   margin: 0;
   overflow-x: hidden;
@@ -94,16 +101,15 @@ body {
 .HeaderSection img {
   -o-object-fit: cover;
      object-fit: cover;
-  width: 100%;
   height: 200px;
   max-height: 500px;
   border-radius: 25px;
   filter: brightness(0.5);
-  width: 86%;
+  width: 90%;
 }
 .HeaderSection p {
   position: absolute;
-  top: 28%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 3rem;
@@ -119,7 +125,7 @@ body {
   }
   .HeaderSection p {
     font-size: 2rem;
-    top: 22%;
+    top: 50%;
     text-shadow: none;
   }
 }
@@ -217,46 +223,59 @@ body {
   text-align: left;
 }
 
-.LogementsSection {
-  padding: 20px;
-}
 .LogementsSection .grid-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(411px, 0fr));
-  gap: 40px;
+  grid-template-columns: repeat(auto-fill, minmax(421px, 0fr));
+  gap: 55px;
   padding: 50px;
   justify-content: center;
 }
+@media (max-width: 480px) {
+  .LogementsSection .grid-container {
+    display: flex;
+    gap: 25px;
+    padding: 20px;
+    justify-content: center;
+    flex-direction: column;
+  }
+}
 .LogementsSection .grid-item {
-  background: linear-gradient(0deg, rgb(0, 0, 0) -90%, rgb(255, 75, 75) 40%);
-  padding: 10px;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.4) 20%, rgba(0, 0, 0, 0.8) 80%), url("path-to-your-cover-image");
+  background-size: cover;
+  background-position: center;
   border-radius: 10px;
   text-align: center;
   cursor: pointer;
   transition: transform 0.3s, box-shadow 0.3s;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-end;
   height: 300px;
+  position: relative;
 }
 .LogementsSection .grid-item:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
-.LogementsSection .grid-item .logement-image {
-  width: 100%;
-  height: 140px;
-  -o-object-fit: cover;
-     object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 10px;
-  height: 73%;
-}
 .LogementsSection .grid-item p {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
   color: #fff;
   font-size: 18px;
-  width: 67%;
-  text-align: start;
+  margin: 0;
+  text-align: left;
+  width: 51%;
+}
+@media (max-width: 480px) {
+  .LogementsSection .grid-item p {
+    width: 80%;
+  }
+}
+@media (max-width: 480px) {
+  .LogementsSection .grid-item {
+    height: 190px;
+  }
 }
 .LogementsSection .appartement-details {
   margin-top: 30px;
@@ -273,7 +292,7 @@ body {
 .LogementsSection .appartement-details h3 {
   margin-top: 20px;
   font-size: 22px;
-  color: #ff4b4b;
+  color: #ff6b6b;
 }
 .LogementsSection .appartement-details ul {
   list-style-type: disc;
@@ -291,6 +310,84 @@ body {
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 10px;
+}
+
+.appartement-details {
+  display: flex;
+  justify-content: space-between;
+  margin-inline: 12rem;
+  color: #ff6b6b;
+  margin-block: 35px;
+}
+.appartement-details .appartement-details-left {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.appartement-details .appartement-details-left h2 {
+  font-size: 35px;
+  font-weight: 300;
+}
+.appartement-details .appartement-details-left .location {
+  font-size: 20px;
+  color: black;
+  margin-bottom: 25px;
+}
+.appartement-details .appartement-details-right {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+.appartement-details .appartement-details-right .host {
+  display: flex;
+}
+.appartement-details .appartement-details-right .host p {
+  font-size: larger;
+  width: 40%;
+  padding-top: 12px;
+}
+.appartement-details .appartement-details-right img.host-picture {
+  border-radius: 65px;
+  height: 5rem;
+}
+
+.tag {
+  color: white;
+  background-color: #ff6b6b;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-right: 10px;
+}
+
+.star {
+  font-size: 22px;
+  margin-inline: 5px;
+}
+.star.colored {
+  color: #ff6b6b;
+}
+.star.empty {
+  color: #ccc;
+}
+
+.error404 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.error404 img {
+  margin: 40px 0 50px 0;
+}
+.error404 h3 {
+  font-size: 5vh;
+  font-weight: 300;
+  margin: 40px 0 50px 0;
+  color: #ff6b6b;
+}
+.error404 p {
+  margin: 40px 0 50px 0;
+  text-decoration: underline;
+  font-size: larger;
 }
 
 .carousel {
@@ -346,17 +443,4 @@ body {
   padding: 5px 10px;
   border-radius: 5px;
   font-size: 1.5rem;
-}
-
-.appartement-details {
-  margin-inline: 12rem;
-  color: #ff6b6b;
-}
-.appartement-details h2 {
-  font-size: 40px;
-  font-weight: 300;
-}
-.appartement-details .location {
-  font-size: 20px;
-  color: black;
 }/*# sourceMappingURL=style.css.map */

@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Carousel from "../components/Caroussel";
 import Error404 from "./404";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faStarHalfAlt } from "@fortawesome/free-solid-svg-icons";
+import { faStar as faStarEmpty } from "@fortawesome/free-regular-svg-icons";
 
 export default function AppartementDetails() {
   const { id } = useParams();
@@ -30,6 +34,18 @@ export default function AppartementDetails() {
     return <Error404 />;
   }
 
+  const renderStars = (rating) => {
+    const stars = [];
+    for (let i = 1; i <= 5; i++) {
+      if (i <= rating) {
+        stars.push(<FontAwesomeIcon key={i} icon={faStar} className="star colored" />);
+      } else {
+        stars.push(<FontAwesomeIcon key={i} icon={faStarEmpty} className="star empty" />);
+      }
+    }
+    return stars;
+  };
+
   return (
     <div className="body">
       <Carousel pictures={appartement.pictures} />
@@ -56,7 +72,9 @@ export default function AppartementDetails() {
               className="host-picture"
             />
           </div>
-          <p>Évaluation : {appartement.rating}/5</p>
+          <div className="rating">
+            {renderStars(appartement.rating)}
+          </div>
         </div>
       </div>
     </div>
