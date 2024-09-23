@@ -206,10 +206,11 @@ p {
   height: 13px;
 
   @media (max-width: 768px) {
-    height: 10px;
+    height: 6px;
   }
 
   @media (max-width: 480px) {
+    height: 2px;
   }
 }
 
@@ -235,24 +236,81 @@ p {
   text-align: left;
 }
 
+// DROPDOWN DANS LES DETAILS APPARTS
+
+.About-dropdown-two {
+  display: flex;
+  margin-inline: 12rem;
+  gap: 200px;
+
+  .dropdown-content {
+    opacity: 0;
+    visibility: hidden;
+    height: 0;
+    overflow: hidden;
+    transition: opacity 0.7s ease, height 0.7s ease;
+  }
+
+  .dropdown-content.open {
+    opacity: 1;
+    visibility: visible;
+    height: auto;
+  }
+
+  .dropdown-item-two {
+    margin-bottom: 10px;
+    border-radius: 14px;
+    width: 50%;
+
+    @media (max-width: 768px) {
+      width: 80%;
+    }
+  }
+
+  @media (max-width: 1064px) {
+    margin-inline: 7rem;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    gap: 0px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+    margin-inline: 0px;
+  }
+
+  @media (max-width: px) {
+  }
+}
+
+.equipments-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    margin-bottom: 5px;
+  }
+}
+
 // GRID APPARTEMENTS
 
 .LogementsSection {
-  
-
   .grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(421px, 0fr));
+    grid-template-columns: repeat(auto-fill, minmax(410px, 0fr));
     gap: 55px;
     padding: 50px;
     justify-content: center;
-  
+
     @media (max-width: 480px) {
       display: flex;
-    gap: 25px;
-    padding: 20px;
-    justify-content: center;
-    flex-direction: column;
+      gap: 25px;
+      padding: 20px;
+      justify-content: center;
+      flex-direction: column;
     }
   }
 
@@ -348,6 +406,19 @@ p {
   color: #ff6b6b;
   margin-block: 35px;
 
+  @media (max-width: 1064px) {
+    margin-inline: 7rem;
+  }
+
+  @media (max-width: 768px) {
+    margin-inline: 5rem;
+    flex-direction: column;
+  }
+
+  @media (max-width: 425px) {
+    margin-inline: 1.5rem;
+  }
+
   .appartement-details-left {
     display: flex;
     flex-direction: column;
@@ -356,18 +427,34 @@ p {
     h2 {
       font-size: 35px;
       font-weight: 300;
+
+      @media (max-width: 480px) {
+        font-size: 22px;
+      }
     }
 
     .location {
       font-size: 20px;
       color: black;
       margin-bottom: 25px;
+
+      @media (max-width: 480px) {
+        font-size: 16px;
+      }
     }
   }
   .appartement-details-right {
     display: flex;
     flex-direction: column;
     gap: 25px;
+
+    @media (max-width: 768px) {
+      display: flex;
+      flex-direction: row-reverse;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      align-items: center;
+    }
 
     .host {
       display: flex;
@@ -376,14 +463,33 @@ p {
         font-size: larger;
         width: 40%;
         padding-top: 12px;
+
+        @media (max-width: 480px) {
+          font-size: 14px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        flex-direction: row;
       }
     }
 
     img.host-picture {
       border-radius: 65px;
       height: 5rem;
+
+      @media (max-width: 480px) {
+        height: 3rem;
+      }
     }
   }
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
 }
 
 .tag {
@@ -391,12 +497,25 @@ p {
   background-color: #ff6b6b;
   border-radius: 5px;
   padding: 5px 10px;
-  margin-right: 10px;
+
+  @media (max-width: 480px) {
+    padding: 2px 8px;
+    font-size: 14px;
+  }
+}
+
+.rating {
+  display: flex;
+  flex-wrap: nowrap;
 }
 
 .star {
   font-size: 22px;
   margin-inline: 5px;
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
 
   &.colored {
     color: #ff6b6b;
@@ -406,17 +525,6 @@ p {
     color: #ccc;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
 
 // PAGE ERROR 404
 
@@ -451,6 +559,10 @@ p {
   margin: 0 auto;
   overflow: hidden;
 
+  @media (max-width: 480px) {
+    width: 90%;
+  }
+
   .carousel-wrapper {
     display: flex;
     justify-content: center;
@@ -462,6 +574,10 @@ p {
       height: 450px;
       object-fit: cover;
       border-radius: 10px;
+
+      @media (max-width: 480px) {
+        height: 260px;
+      }
     }
 
     .carousel-navigation {
@@ -485,6 +601,10 @@ p {
         &:hover {
           color: #ff4b4b;
         }
+
+        @media (max-width: 480px) {
+          font-size: 2rem;
+        }
       }
 
       .left {
@@ -503,6 +623,10 @@ p {
       padding: 5px 10px;
       border-radius: 5px;
       font-size: 1.5rem;
+
+      @media (max-width: 480px) {
+        font-size: 1.2rem;
+      }
     }
   }
 }

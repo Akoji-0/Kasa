@@ -11,6 +11,11 @@ export default function AppartementDetails() {
   const { id } = useParams();
   const [appartement, setAppartement] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [openSection, setOpenSection] = useState(null);
+
+  const toggleSection = (section) => {
+    setOpenSection(openSection === section ? null : section);
+  };
 
   useEffect(() => {
     fetch("/logements.json")
@@ -38,9 +43,13 @@ export default function AppartementDetails() {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
       if (i <= rating) {
-        stars.push(<FontAwesomeIcon key={i} icon={faStar} className="star colored" />);
+        stars.push(
+          <FontAwesomeIcon key={i} icon={faStar} className="star colored" />
+        );
       } else {
-        stars.push(<FontAwesomeIcon key={i} icon={faStarEmpty} className="star empty" />);
+        stars.push(
+          <FontAwesomeIcon key={i} icon={faStarEmpty} className="star empty" />
+        );
       }
     }
     return stars;
@@ -54,7 +63,7 @@ export default function AppartementDetails() {
         <div className="appartement-details-left">
           <h2>{appartement.title}</h2>
           <p className="location">{appartement.location}</p>
-          <div>
+          <div className="tags">
             {appartement.tags.map((tag, index) => (
               <span key={index} className="tag">
                 {tag}
@@ -65,15 +74,53 @@ export default function AppartementDetails() {
 
         <div className="appartement-details-right">
           <div className="host">
-          <p>{appartement.host.name}</p>
+            <p>{appartement.host.name}</p>
             <img
               src={appartement.host.picture}
               alt={appartement.host.name}
               className="host-picture"
             />
           </div>
-          <div className="rating">
-            {renderStars(appartement.rating)}
+          <div className="rating">{renderStars(appartement.rating)}</div>
+        </div>
+      </div>
+      <div className="About-dropdown-two">
+        <div className="dropdown-item-two">
+          <div
+            className={`dropdown-header ${
+              openSection === "description" ? "open" : ""
+            }`}
+            onClick={() => toggleSection("description")}
+          >
+            Description
+          </div>
+          <div
+            className={`dropdown-content ${
+              openSection === "description" ? "open" : ""
+            }`}
+          >
+            {appartement.description}
+          </div>
+        </div>
+        <div className="dropdown-item-two">
+          <div
+            className={`dropdown-header ${
+              openSection === "equipements" ? "open" : ""
+            }`}
+            onClick={() => toggleSection("equipements")}
+          >
+            Equipements
+          </div>
+          <div
+            className={`dropdown-content ${
+              openSection === "equipements" ? "open" : ""
+            }`}
+          >
+            <ul className="equipments-list">
+              {appartement.equipments.map((equipment, index) => (
+                <li key={index}>{equipment}</li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
