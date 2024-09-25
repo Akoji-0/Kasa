@@ -154,13 +154,11 @@ p {
 @media (max-width: 768px) {
   .About-dropdown {
     width: 70%;
-    gap: 13px;
   }
 }
 @media (max-width: 480px) {
   .About-dropdown {
     width: 85%;
-    gap: 12px;
   }
 }
 
