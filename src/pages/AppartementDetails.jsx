@@ -4,18 +4,13 @@ import Carousel from "../components/Caroussel";
 import Error404 from "./404";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
-import { faStarHalfAlt } from "@fortawesome/free-solid-svg-icons";
 import { faStar as faStarEmpty } from "@fortawesome/free-regular-svg-icons";
+import Collapse from "../components/Collapse";
 
 export default function AppartementDetails() {
   const { id } = useParams();
   const [appartement, setAppartement] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [openSection, setOpenSection] = useState(null);
-
-  const toggleSection = (section) => {
-    setOpenSection(openSection === section ? null : section);
-  };
 
   useEffect(() => {
     fetch("/logements.json")
@@ -84,45 +79,17 @@ export default function AppartementDetails() {
           <div className="rating">{renderStars(appartement.rating)}</div>
         </div>
       </div>
-      <div className="About-dropdown-two">
-        <div className="dropdown-item-two">
-          <div
-            className={`dropdown-header ${
-              openSection === "description" ? "open" : ""
-            }`}
-            onClick={() => toggleSection("description")}
-          >
-            Description
-          </div>
-          <div
-            className={`dropdown-content ${
-              openSection === "description" ? "open" : ""
-            }`}
-          >
-            {appartement.description}
-          </div>
-        </div>
-        <div className="dropdown-item-two">
-          <div
-            className={`dropdown-header ${
-              openSection === "equipements" ? "open" : ""
-            }`}
-            onClick={() => toggleSection("equipements")}
-          >
-            Equipements
-          </div>
-          <div
-            className={`dropdown-content ${
-              openSection === "equipements" ? "open" : ""
-            }`}
-          >
-            <ul className="equipments-list">
-              {appartement.equipments.map((equipment, index) => (
-                <li key={index}>{equipment}</li>
-              ))}
-            </ul>
-          </div>
-        </div>
+      <div className="dropdown-apparts">
+        <Collapse title="Description">
+          <p>{appartement.description}</p>
+        </Collapse>
+        <Collapse title="Equipments">
+          <ul className="equipments-list">
+            {appartement.equipments.map((equipment, index) => (
+              <li key={index}>{equipment}</li>
+            ))}
+          </ul>
+        </Collapse>
       </div>
     </div>
   );

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import imagePath from "../pages/Ls1.png";
+import { Link } from "react-router-dom";
+import imagePath1 from "../pages/Ls1.png";
+import HeaderImage from "../components/HeaderImage";
 
 export default function Accueil() {
   const [logements, setLogements] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     fetch("/logements.json")
@@ -18,44 +18,43 @@ export default function Accueil() {
         console.error("Erreur lors du chargement des données:", error);
         setLoading(false);
       });
-  }, []);
 
-  const handleAppartementClick = (id) => {
-    navigate(`/appartement/${id}`);
-  };
+    const gridItems = document.querySelectorAll(".grid-item");
+    gridItems.forEach((item) => {
+      const cover = item.getAttribute("data-cover");
+      if (cover) {
+        item.style.backgroundImage = `
+          url(${cover})
+        `;
+      }
+    });
+  });
+
+  if (loading) {
+    return <p>Chargement en cours...</p>;
+  }
 
   return (
-    <div>
-      <div className="HeaderSection">
-        <img src={imagePath} alt="Photo de fond" />
-        <p>Chez vous, partout et ailleurs</p>
-      </div>
+    <div className="topImage">
+      <HeaderImage
+        imageSrc={imagePath1}
+        altText="Image de fond"
+        caption="Chez vous, partout et ailleurs"
+      />
 
       <div className="LogementsSection">
-        {loading ? (
-          <p>Chargement des logements...</p>
-        ) : (
-          <div className="grid-container">
-            {logements.map((logement) => (
-              <div
+        <div className="grid-container">
+          {logements.map((logement) => (
+            <Link
               key={logement.id}
+              to={`/appartement/${logement.id}`}
               className="grid-item"
-              onClick={() => handleAppartementClick(logement.id)}
-              style={{
-                backgroundImage: `linear-gradient(
-                    180deg,
-                    rgba(0, 0, 0, 0.2) 20%,
-                    rgba(0, 0, 0, 0.6) 70%
-                  ), url(${logement.cover})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-              }}
+              data-cover={logement.cover}
             >
               <p>{logement.title}</p>
-            </div>
-            ))}
-          </div>
-        )}
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   );
